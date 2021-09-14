@@ -1,0 +1,12 @@
+.RecipeForm {
+
+}
+
+.RecipeForm label {
+    display: block;
+    font-size: xx-small;
+}
+
+.RecipeForm input {
+    margin-bottom: 0.5em;
+}

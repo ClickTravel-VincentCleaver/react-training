@@ -1,0 +1,16 @@
+.Recipe {
+    text-align: left;
+    border: 2px solid grey;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    background-color: white;
+}
+
+.Recipe-name {
+    font-weight: bold;
+}
+
+.Recipe-description {
+
+}
