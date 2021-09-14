@@ -39,7 +39,7 @@ function RecipeForm(props) {
                 <br/>
                 <label>Ingredients:</label>
                 <br/>
-                <button>Save</button>
+                <button onClick={props.onSave}>Save</button>
                 <button onClick={props.onCancel}>Cancel</button>
             </form>
         </div>

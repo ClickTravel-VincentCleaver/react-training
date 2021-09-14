@@ -17,6 +17,13 @@ function Recipe(props) {
         setState({ mode: 'edit' });
     }
 
+    function handleSave(event) {
+        event.preventDefault();
+        // do the save
+
+        setState({ mode: 'view' });
+    }
+
     function renderViewMode() {
         return (
             <div className="Recipe">
@@ -27,17 +34,17 @@ function Recipe(props) {
                 <button>Delete</button>
             </div>
         )
-    };
+    }
 
     function renderEditMode() {
         return (
             <div className="Recipe">
-                <RecipeForm recipe={recipe} onCancel={handleCancel}/>
+                <RecipeForm recipe={recipe} onCancel={handleCancel} onSave={handleSave}/>
             </div>
         )
     }
 
-    return state.mode == 'view' ?renderViewMode() : renderEditMode();
+    return state.mode === 'view' ? renderViewMode() : renderEditMode();
 }
 
 export default Recipe;

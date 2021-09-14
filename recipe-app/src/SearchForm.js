@@ -3,7 +3,7 @@ import React from "react";
 
 function SearchForm() {
     return (
-        <div class="SearchForm">
+        <div className="SearchForm">
             <form>
                 <input type="text" />
                 <button>Search</button>

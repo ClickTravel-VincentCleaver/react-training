@@ -1,3 +1,4 @@
+import React from "react";
 import './App.css';
 import ControlPanel from "./ControlPanel";
 import ContentPanel from "./ContentPanel";

@@ -17,12 +17,12 @@ function RecipeAdd() {
         setState({ mode: 'form' });
     }
 
-    function handleSave() {
-
-    }
-
     function handleCancel() {
         setState({ mode: 'ready' });
+    }
+
+    function handleSave(event) {
+        event.preventDefault();
     }
 
     function renderReadyMode() {
@@ -33,13 +33,13 @@ function RecipeAdd() {
 
     function renderFormMode() {
         return (
-            <RecipeForm recipe={newRecipe} onCancel={handleCancel} />
+            <RecipeForm recipe={newRecipe} onCancel={handleCancel} onSave={handleSave} />
         )
     }
 
     return (
         <div className="RecipeAdd">
-            {state.mode == 'ready' ? renderReadyMode() : renderFormMode()}
+            {state.mode === 'ready' ? renderReadyMode() : renderFormMode()}
         </div>
     )
 }
