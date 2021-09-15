@@ -18,10 +18,17 @@ function Recipe(props) {
     }
 
     function handleSave(event) {
-        event.preventDefault();
+        // event.preventDefault();
         // do the save
+        props.onUpdate(recipe).then(() => {
+            setState({ mode: 'view' });
+        });
+    }
 
-        setState({ mode: 'view' });
+    function handleDelete(event) {
+        if (window.confirm("Are you sure?")) {
+            props.onDelete(recipe.id);
+        }
     }
 
     function renderViewMode() {
@@ -31,7 +38,7 @@ function Recipe(props) {
                 <div className="Recipe-description">{recipe.description}</div>
                 <IngredientList ingredients={recipe.ingredients}/>
                 <button onClick={handleEdit}>Edit</button>
-                <button>Delete</button>
+                <button onClick={handleDelete}>Delete</button>
             </div>
         )
     }

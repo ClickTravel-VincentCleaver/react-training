@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import Recipe from './Recipe';
 import RecipeAdd from "./RecipeAdd";
 
@@ -9,11 +9,16 @@ function RecipeList(props) {
             <h2>Recipes:</h2>
             {
                 props.recipes.map(function(recipe){
-                    return <Recipe recipe={recipe} />;
+                    return <Recipe
+                        recipe={recipe}
+                        key={recipe.id}
+                        onDelete={props.onDelete}
+                        onUpdate={props.onUpdate}
+                    />;
                 })
             }
             <hr/>
-            <RecipeAdd />
+            <RecipeAdd onSave={props.onCreate}/>
         </div>
     )
 }

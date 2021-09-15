@@ -7,7 +7,7 @@ function IngredientList(props) {
             <span>Ingredients:</span>
             {
                 props.ingredients.map(function(ingredient, index){
-                    return <Ingredient name={ingredient.name} />
+                    return <Ingredient name={ingredient.name} key={ingredient.name} />
                 })
             }
         </div>

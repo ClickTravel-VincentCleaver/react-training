@@ -2,10 +2,41 @@ import './ContentPanel.css';
 import RecipeList from "./RecipeList";
 import Loading from "./Loading";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import {
+    getRecipes,
+    createRecipe,
+    updateRecipe,
+    deleteRecipe
+} from './service/RecipeService';
 
-// temporary test data
 function ContentPanel() {
+
+    function fetchRecipes() {
+        getRecipes().then(result => {
+            setState({
+                recipes: result.recipes,
+                isLoading: false
+            })
+        });
+    }
+
+    function handleDeleteRecipe(recipe_id) {
+        return deleteRecipe({ recipe_id }).then(() =>
+            fetchRecipes()
+        );
+    }
+
+    function handleCreateRecipe(recipe) {
+        return createRecipe({ recipe }).then(() =>
+            fetchRecipes()
+        );
+    }
+
+    function handleUpdateRecipe(recipe) {
+        return updateRecipe({ recipe }).then(() =>
+            fetchRecipes()
+        );
+    }
 
     const [state, setState] = useState({
         recipes: [] ,
@@ -14,22 +45,23 @@ function ContentPanel() {
 
     // equivalent to componentDidMount
     useEffect(() => {
-        const url = "/api/recipe/";
-        axios.get(url).then(response => {
-            console.log(response);
-            setState({ recipes: response.data })
-        });
+        fetchRecipes();
     }, []);
 
     return (
         <div className="ContentPanel">
-            {
-                state.isLoading ? (
-                    <Loading />
-                ) : (
-                    <RecipeList recipes={state.recipes} />
-                )
-            }
+        {
+            state.isLoading ? (
+                <Loading />
+            ) : (
+                <RecipeList
+                    recipes={state.recipes}
+                    onDelete={handleDeleteRecipe}
+                    onCreate={handleCreateRecipe}
+                    onUpdate={handleUpdateRecipe}
+                />
+            )
+        }
         </div>
     )
 }

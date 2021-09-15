@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import RecipeForm from "./RecipeForm";
 import "./RecipeAdd.css";
 
-function RecipeAdd() {
+function RecipeAdd(props) {
 
-    const [state, setState] = useState( { mode: 'ready' });
+   const [state, setState] = useState( { mode: 'ready' });
 
     const newRecipe = {
         id: 0,
@@ -21,8 +21,10 @@ function RecipeAdd() {
         setState({ mode: 'ready' });
     }
 
-    function handleSave(event) {
-        event.preventDefault();
+    function handleSave(recipe) {
+        props.onSave(recipe).then(() => {
+            setState({ mode: 'ready' });
+        });
     }
 
     function renderReadyMode() {

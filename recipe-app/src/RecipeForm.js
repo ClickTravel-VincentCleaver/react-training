@@ -3,13 +3,16 @@ import "./RecipeForm.css";
 
 function RecipeForm(props) {
 
-    //const [state, setState] = useState({ recipe: {id: 0, name:'', description:''}});
     const [state, setState] = useState({ recipe: props.recipe });
 
     function handleChange(event) {
         let updated_recipe = state.recipe;
         updated_recipe[event.target.name] = event.target.value;
         setState({ recipe: updated_recipe });
+    }
+
+    function handleSave() {
+        return props.onSave(state.recipe);
     }
 
     return (
@@ -39,8 +42,8 @@ function RecipeForm(props) {
                 <br/>
                 <label>Ingredients:</label>
                 <br/>
-                <button onClick={props.onSave}>Save</button>
-                <button onClick={props.onCancel}>Cancel</button>
+                <button type="button" onClick={handleSave}>Save</button>
+                <button type="button" onClick={props.onCancel}>Cancel</button>
             </form>
         </div>
     )
