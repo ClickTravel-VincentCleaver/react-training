@@ -33,7 +33,7 @@ function Recipe(props) {
 
     function renderViewMode() {
         return (
-            <div className="Recipe">
+            <div className="Recipe" id={'recipe-'+recipe.id}>
                 <div className="Recipe-name">{recipe.name}</div>
                 <div className="Recipe-description">{recipe.description}</div>
                 <IngredientList ingredients={recipe.ingredients}/>
@@ -45,7 +45,7 @@ function Recipe(props) {
 
     function renderEditMode() {
         return (
-            <div className="Recipe">
+            <div className="Recipe" id="recipe-{recipe.id}">
                 <RecipeForm recipe={recipe} onCancel={handleCancel} onSave={handleSave}/>
             </div>
         )

@@ -8,6 +8,7 @@ import {
     updateRecipe,
     deleteRecipe
 } from './service/RecipeService';
+import SearchForm from "./SearchForm";
 
 function ContentPanel() {
 
@@ -38,9 +39,14 @@ function ContentPanel() {
         );
     }
 
+    function handleSearch(searchText) {
+        setState({ searchText });
+    }
+
     const [state, setState] = useState({
         recipes: [] ,
         isLoading: true,
+        searchText: '',
     });
 
     // equivalent to componentDidMount
@@ -50,19 +56,20 @@ function ContentPanel() {
 
     return (
         <div className="ContentPanel">
-        {
-            state.isLoading ? (
-                <Loading />
-            ) : (
-                <RecipeList
-                    recipes={state.recipes}
-                    onDelete={handleDeleteRecipe}
-                    onCreate={handleCreateRecipe}
-                    onUpdate={handleUpdateRecipe}
-                />
-            )
-        }
-        </div>
+            <SearchForm onSearch={handleSearch}/>
+            {
+                state.isLoading ? (
+                    <Loading />
+                ) : (
+                    <RecipeList
+                        recipes={state.recipes}
+                        onDelete={handleDeleteRecipe}
+                        onCreate={handleCreateRecipe}
+                        onUpdate={handleUpdateRecipe}
+                    />
+                )
+            }
+            </div>
     )
 }
 

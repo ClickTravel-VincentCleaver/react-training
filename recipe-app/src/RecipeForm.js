@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./RecipeForm.css";
+import IngredientInputs from "./IngredientInputs";
 
 function RecipeForm(props) {
 
@@ -17,7 +18,7 @@ function RecipeForm(props) {
 
     return (
         <div className="RecipeForm">
-            <form>
+            <form id={'recipe-form-'+state.recipe.id}>
                 <input
                     type="hidden"
                     id="recipe-form-id"
@@ -33,7 +34,7 @@ function RecipeForm(props) {
                 />
                 <br/>
                 <label htmlFor="recipe-form-description">Description:</label>
-                <input
+                <textarea
                     id="recipe-form-description"
                     name="description"
                     value={state.recipe.description}
@@ -41,6 +42,7 @@ function RecipeForm(props) {
                 />
                 <br/>
                 <label>Ingredients:</label>
+                <IngredientInputs ingredients={state.recipe.ingredients}/>
                 <br/>
                 <button type="button" onClick={handleSave}>Save</button>
                 <button type="button" onClick={props.onCancel}>Cancel</button>

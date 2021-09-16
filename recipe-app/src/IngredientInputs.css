@@ -1,0 +1,22 @@
+.IngredientInputs {
+    border: 2px solid grey;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.IngredientInput {
+    border: 2px solid orange;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 2px;
+    background-color: bisque;
+    margin: 2px;
+}
+
+.IngredientInput-name, .IngredientInput input {
+    display: inline-block;
+    padding: 2px;
+}
+
+.IngredientInput button {
+}
