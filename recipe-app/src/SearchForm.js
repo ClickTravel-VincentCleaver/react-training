@@ -9,8 +9,10 @@ function SearchForm(props) {
         setState({ searchText: event.target.value});
     }
 
-    function handleSearch() {
-        return props.onSearch(state.searchText);
+    function handleSearch(event) {
+        console.log(`SearchForm.handleSearch() ${state.searchText}`);
+        event.preventDefault();
+        props.onSearch(state.searchText);
     }
 
     return (

@@ -3,11 +3,18 @@ import axios from "axios";
 const BASE_URL = "/api/recipe/";
 
 function recipe_url(recipe_id){
-    return BASE_URL + recipe_id + '/';
+    return `${BASE_URL}${recipe_id}/`;
 }
 
 export function getRecipes() {
     return axios.get(BASE_URL).then(response => {
+        return { recipes: response.data };
+    });
+}
+
+export function searchRecipes({ searchText }) {
+    return axios.get(`${BASE_URL}?name=${searchText}`)
+        .then(response => {
         return { recipes: response.data };
     });
 }

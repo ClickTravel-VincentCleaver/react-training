@@ -6,19 +6,33 @@ import {
     getRecipes,
     createRecipe,
     updateRecipe,
-    deleteRecipe
+    deleteRecipe,
+    searchRecipes
 } from './service/RecipeService';
-import SearchForm from "./SearchForm";
 
-function ContentPanel() {
+function ContentPanel(props) {
+
+    const [state, setState] = useState({
+        recipes: [] ,
+        isLoading: true
+    });
 
     function fetchRecipes() {
-        getRecipes().then(result => {
-            setState({
-                recipes: result.recipes,
-                isLoading: false
-            })
-        });
+        if (props.searchText === '') {
+            getRecipes().then(result => {
+                setState({
+                    recipes: result.recipes,
+                    isLoading: false
+                })
+            });
+        } else {
+            searchRecipes({ searchText: props.searchText }).then(result => {
+                setState({
+                    recipes: result.recipes,
+                    isLoading: false
+                })
+            });
+        }
     }
 
     function handleDeleteRecipe(recipe_id) {
@@ -39,24 +53,12 @@ function ContentPanel() {
         );
     }
 
-    function handleSearch(searchText) {
-        setState({ searchText });
-    }
-
-    const [state, setState] = useState({
-        recipes: [] ,
-        isLoading: true,
-        searchText: '',
-    });
-
-    // equivalent to componentDidMount
     useEffect(() => {
         fetchRecipes();
-    }, []);
+    }, [props.searchText]);
 
     return (
         <div className="ContentPanel">
-            <SearchForm onSearch={handleSearch}/>
             {
                 state.isLoading ? (
                     <Loading />
