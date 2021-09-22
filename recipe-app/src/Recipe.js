@@ -18,9 +18,7 @@ function Recipe(props) {
     }
 
     function handleSave(event) {
-        // event.preventDefault();
-        // do the save
-        props.onUpdate(recipe).then(() => {
+       props.onUpdate(recipe).then(() => {
             setState({ mode: 'view' });
         });
     }

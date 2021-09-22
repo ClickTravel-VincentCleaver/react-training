@@ -10,7 +10,6 @@ function SearchForm(props) {
     }
 
     function handleSearch(event) {
-        console.log(`SearchForm.handleSearch() ${state.searchText}`);
         event.preventDefault();
         props.onSearch(state.searchText);
     }
@@ -19,6 +18,7 @@ function SearchForm(props) {
         <div className="SearchForm">
             <form>
                 <input
+                    id="search-text"
                     type="text"
                     name="searchText"
                     value={state.searchText}

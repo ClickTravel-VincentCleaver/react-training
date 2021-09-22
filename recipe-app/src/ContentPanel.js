@@ -1,7 +1,7 @@
 import './ContentPanel.css';
 import RecipeList from "./RecipeList";
 import Loading from "./Loading";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
     getRecipes,
     createRecipe,
@@ -17,7 +17,7 @@ function ContentPanel(props) {
         isLoading: true
     });
 
-    function fetchRecipes() {
+    const fetchRecipes = useCallback(() => {
         if (props.searchText === '') {
             getRecipes().then(result => {
                 setState({
@@ -33,7 +33,7 @@ function ContentPanel(props) {
                 })
             });
         }
-    }
+    }, [props.searchText]);
 
     function handleDeleteRecipe(recipe_id) {
         return deleteRecipe({ recipe_id }).then(() =>
@@ -55,7 +55,7 @@ function ContentPanel(props) {
 
     useEffect(() => {
         fetchRecipes();
-    }, [props.searchText]);
+    }, [props.searchText, fetchRecipes]);
 
     return (
         <div className="ContentPanel">
