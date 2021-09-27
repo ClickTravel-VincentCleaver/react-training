@@ -54,4 +54,6 @@ it('should submit successfully', () => {
 
     render(<RecipeForm recipe={recipe} onSave={onSave} onCancel={onCancel} />);
     fireEvent.click(screen.getByText('Save'));
+
+    expect(onSave.mock.calls.length).toBe(1);
 });

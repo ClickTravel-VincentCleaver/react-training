@@ -4,15 +4,17 @@
 We want to create a client application for the Recipe/Ingredients server we already built in the previous exercise (Django)
 
 This is the second TravelPerk onboarding exercise, which is a React frontend to work with the Django backend application
-that was built as part of the first TravelPerk onboarding exercise and can be found here:
+that was built as part of the first exercise which can be found here:
 https://github.com/ClickTravel-VincentCleaver/django-training
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-It uses functional components and hooks.
+This is a single page app with a dynamic layout. It uses functional components and hooks.
 
 The structure has been kept flat with React components, style sheets, and test files within the src directory, 
 plus a separate Recipe service to handle the API calls to the backend.
+
+Styling uses manually created local stylesheets and does not pull in any external styling libraries.
 
 ## Available Scripts
 
